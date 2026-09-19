@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Bodde.Json.Extensions
 {
@@ -23,15 +24,26 @@ namespace Bodde.Json.Extensions
             }
 
             /// <summary>
-            /// Serializes the object to a JSON string using System.Text.Json.JsonSerializer with indentation.
+            /// Serializes the object to a JSON string using System.Text.Json.JsonSerializer with indented formatting.
             /// </summary>
-            /// <param name="options">The options to use for serialization. Indentation will be always overridden.</param>
+            /// <param name="indented">Whether to format the JSON with indentation. Defaults to true.</param>
+            /// <param name="enumsAsStrings">Whether to serialize enums as strings. Defaults to true.</param>
             /// <returns>The indented JSON string.</returns>
             /// <exception cref="ArgumentNullException">Thrown when the object to serialize is null.</exception>
-            public string ToIndentedJson(JsonSerializerOptions? options = null)
+            public string ToFormattedJson(
+                bool indented = true, 
+                bool enumsAsStrings = true
+                )
             {
-                options ??= new ();
-                options.WriteIndented = true;
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = indented
+                };
+
+                if (enumsAsStrings)
+                {
+                    options.Converters.Add(new JsonStringEnumConverter());
+                }
 
                 return me.ToJson(options);
             }
