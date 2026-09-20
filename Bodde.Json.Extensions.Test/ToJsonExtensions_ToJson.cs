@@ -4,7 +4,7 @@ using Bodde.Json.Extensions.Test.Models;
 
 namespace Bodde.Json.Extensions.Test;
 
-public class JsonExtensions_ToJson
+public class ToJsonExtensions_ToJson
 {
     [Fact]
     public void Null_Throws_ArgumentNullException()
