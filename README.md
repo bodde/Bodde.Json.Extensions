@@ -1,7 +1,7 @@
 # Bodde.Json.Extensions
 
 [![.NET Standard](https://img.shields.io/badge/.NET%20Standard-2.0-512BD4)](https://dotnet.microsoft.com/platform/dotnet-standard)
-[![Build](https://github.com/bodde/Bodde.Json.Extensions/actions/workflows/dotnet.yml/badge.svg)](https://github.com/bodde/Bodde.Json.Extensions/actions)
+[![.NET](https://github.com/bodde/Bodde.Json.Extensions/actions/workflows/dotnet.yml/badge.svg)](https://github.com/bodde/Bodde.Json.Extensions/actions/workflows/dotnet.yml)
 [![Code coverage](https://img.shields.io/badge/code%20coverage-100%25-brightgreen)](https://github.com/bodde/Bodde.Json.Extensions/tree/main/Bodde.Json.Extensions.Test)
 
 This package contains lightweight extension methods for serializing and deserializing JSON using `System.Text.Json`.
