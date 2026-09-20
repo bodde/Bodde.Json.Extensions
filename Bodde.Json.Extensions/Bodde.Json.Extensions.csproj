@@ -5,10 +5,35 @@
     <LangVersion>14.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet configuration -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Bodde.Json.Extensions</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Bodde</Authors>
+
+    <!-- Useful metadata -->
+    <Description>Collection of useful extension methods for serializing and deserializing JSON.</Description>
+    <PackageTags>extensions;common;utilities;helpers;dotnet</PackageTags>
+    <PackageIcon>bodde-icon-128.png</PackageIcon>
+
+    <!-- README -->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!-- GitHub link -->
+    <RepositoryUrl>https://github.com/bodde/Bodde.Json.Extensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/bodde/Bodde.Json.Extensions</PackageProjectUrl>
   </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="10.0.12" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="" />
+    <None Include="images/bodde-icon-128.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
