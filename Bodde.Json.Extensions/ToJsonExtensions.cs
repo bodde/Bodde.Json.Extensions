@@ -13,6 +13,8 @@ public static class ToJsonExtensions
         /// <param name="options">The options to use for serialization.</param>
         /// <returns>The JSON string.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the object to serialize is null.</exception>
+        /// <exception cref="JsonException">Thrown when serialization fails due to invalid JSON or other serialization issues.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the type of the object to serialize is not supported by the serializer.</exception>
         public string ToJson(JsonSerializerOptions? options = null)
         {
             if (me == null)
@@ -21,6 +23,43 @@ public static class ToJsonExtensions
             }
 
             return JsonSerializer.Serialize(me, options);
+        }
+
+        /// <summary>
+        /// Serializes the object to a JSON string using System.Text.Json.JsonSerializer 
+        /// with options for object reference handling and derived type information.
+        /// </summary>
+        /// <param name="objectReference">Whether to enable object reference handling. Defaults to true.</param>
+        /// <param name="derivedTypeInformation">Whether to include derived type information. Defaults to true.</param>
+        /// <param name="options">The options to use for serialization.</param>
+        /// <returns>The JSON string.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the object to serialize is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when a derived type is already registered for a base type.</exception>
+        /// <exception cref="JsonException">Thrown when serialization fails due to invalid JSON or other serialization issues.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the type of the object to serialize is not supported by the serializer.</exception>
+        public string ToJsonWithMetadata(
+            bool objectReference = true, 
+            bool derivedTypeInformation = true, 
+            JsonSerializerOptions? options = null
+            )
+        {
+            if (me == null)
+            {
+                throw new ArgumentNullException(nameof(me));
+            }
+
+            options ??= new JsonSerializerOptions();
+            if(objectReference == true)
+            {
+                options.ReferenceHandler = ReferenceHandler.Preserve;
+            }
+
+            if(derivedTypeInformation == true)
+            {
+                options.TypeInfoResolver = JsonTypeResolver.CreateTypeInfoResolver();
+            }
+
+            return me.ToJson(options);
         }
 
         /// <summary>
